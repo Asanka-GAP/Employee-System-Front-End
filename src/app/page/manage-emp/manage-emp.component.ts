@@ -7,7 +7,7 @@ import { last } from 'rxjs';
 @Component({
   selector: 'app-manage-emp',
   standalone: true,
-  imports: [FormsModule,HttpClientModule,CommonModule],
+  imports: [FormsModule],
   templateUrl: './manage-emp.component.html',
   styleUrl: './manage-emp.component.css'
 })
@@ -17,21 +17,23 @@ export class ManageEmpComponent {
     firstName:"",
     lastName:"",
     email:"",
-    department:"",
-    role:""
+    departmentId:"",
+    roleId:""
   
   }
 
-  constructor(private http:HttpClient){}
 
 addEmployee(){
-  
-  this.http.post("http://localhost:8000/emp-controller/add-employee",this.employeeObj).subscribe(
-    (data)=>{
-      console.log(data);
+  fetch("http://localhost:8080/add-employee",{
+    method:'POST',
+    body: JSON.stringify(this.employeeObj),
+    headers:{
+      "Content-type":"application/json"
     }
-  )
-
+  }).then(res=>res.json())
+  .then(data=>{
+    console.log(data);
+  })
   
 }
 
