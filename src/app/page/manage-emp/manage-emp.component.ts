@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { last } from 'rxjs';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-manage-emp',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,HttpClientModule,CommonModule],
   templateUrl: './manage-emp.component.html',
   styleUrl: './manage-emp.component.css'
 })
@@ -19,22 +20,20 @@ export class ManageEmpComponent {
     email:"",
     departmentId:"",
     roleId:""
-  
   }
+  constructor(private http:HttpClient){}
 
 
 addEmployee(){
-  fetch("http://localhost:8080/add-employee",{
-    method:'POST',
-    body: JSON.stringify(this.employeeObj),
-    headers:{
-      "Content-type":"application/json"
+  this.http.post("http://localhost:8080/add-employee",this.employeeObj).subscribe(
+    (data) =>{
+      Swal.fire({
+        title: "Employee added!",
+        text: "You clicked the button!",
+        icon: "success"
+      });
     }
-  }).then(res=>res.json())
-  .then(data=>{
-    console.log(data);
-  })
-  
+  )
 }
 
 }
