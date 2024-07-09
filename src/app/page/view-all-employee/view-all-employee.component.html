@@ -2,20 +2,24 @@
     View all Employee
   </h1>
   <div class="container">
-    <table class="table">
-        <tr>
+    <table class="table border">
+        <tr class="border text-center bg-black text-white">
+            <th>Count</th>
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>Department</th>
             <th>Role</th>
+            <th>Delete</th>
         </tr>
-        <tr *ngFor="let employee of employeeList">
-            <td>{{employee.id}}</td>
+        <tr class="border text-center" *ngFor="let employee of employeeList;index as i">
+            <td>{{i+1}}</td>
+            <td>{{"E000"+employee.id}}</td>
             <td>{{employee.firstName+" "+employee.lastName}}</td>
             <td>{{employee.email}}</td>
             <td>{{employee.departmentId}}</td>
             <td>{{employee.roleId}}</td>
+            <td><button class="btn btn-danger" (click)="deleteEmployee(employee)"><i class="bi bi-trash-fill"></i></button></td>
         </tr>
     </table>
   </div>
