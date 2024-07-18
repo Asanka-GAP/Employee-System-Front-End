@@ -11,6 +11,7 @@
             <th>Email</th>
             <th>Department</th>
             <th>Role</th>
+            <th>Update</th>
             <th>Delete</th>
         </tr>
         <tr class="border text-center" *ngFor="let employee of employeeList;index as i">
@@ -20,6 +21,7 @@
             <td>{{employee.email}}</td>
             <td>{{employee.departmentId}}</td>
             <td>{{employee.roleId}}</td>
+            <td><button class="btn btn-success" (click)="updateEmployee(employee)"><i class="bi bi-pencil-square"></i></button></td>
             <td><button class="btn btn-danger" (click)="deleteEmployee(employee)"><i class="bi bi-trash-fill"></i></button></td>
         </tr>
     </table>

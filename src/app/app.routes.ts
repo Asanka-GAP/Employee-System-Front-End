@@ -10,5 +10,9 @@ export const routes: Routes = [
     {
         path:"view-all-employee",
         component:ViewAllEmployeeComponent
+    },
+    {
+        path:"",
+        component:ManageEmpComponent
     }
 ];
